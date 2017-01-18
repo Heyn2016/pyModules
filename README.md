@@ -45,7 +45,7 @@ $ make install
 
 ### [4] Python3.5.2/Modules/Setup
 
-SSL=/usr/local  
+SSL=/usr/local/ssl  
 _ssl _ssl.c \  
     -DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl \  
     -L$(SSL)/lib -lssl -lcrypto  
