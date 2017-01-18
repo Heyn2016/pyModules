@@ -12,10 +12,10 @@
 #### [1] OpenSSL
 
 $ tar zxvf openssl-1.0.2j.tar.gz  
-$ ./Configure linux-armv4 -march=armv7-a -mthumb -mfpu=neon  -mfloat-abi=hard shared --cross-compile-prefix=/home/gcc-linaro/bin/arm-linux-gnueabihf-
+$ ./Configure linux-armv4 -march=armv7-a -mthumb -mfpu=neon  -mfloat-abi=hard shared --cross-compile-prefix=/home/gcc-linaro/bin/arm-linux-gnueabihf-  
 $ make  
-$ make install
-Install default path: /usr/local/ssl
+$ make install  
+Install default path: /usr/local/ssl  
 
 #### [2] readline
 
