@@ -2,6 +2,8 @@
 #### openssl-1.0.2j (URL:https://www.openssl.org/source/)
 #### readline-6.2 (URL:http://ftp.gnu.org/gnu/readline/)
 #### termcap-1.3.1 (URL:http://ftp.gnu.org/gnu/termcap/)
+#### sysv_ipc-0.7.0 (URL:http://semanchuk.com/philip/sysv_ipc/)
+#### libmodbus-3.1.4 (URL:http://libmodbus.org/download/)
 
 ## Support Toradex iMX6Q
 #### [1] Linux 3.14.52  
@@ -52,4 +54,20 @@ _ssl _ssl.c \
 
 readline readline.c -I`/usr/local/readline/include` -L`/usr/local/readline/lib` -lreadline -ltermcap  
 
+
+### [5] sysv_ipc
+
+$ tar zxvf sysv_ipc-0.7.0.tar.gz  
+sysv_ipc-0.7.0 $ cp probe_results.h ./  
+sysv_ipc-0.7.0 $ cp Makefile ./  
+sysv_ipc-0.7.0 $ make  
+
+sysv_ipc.cpython-35m-arm-linux-gnueabihf.so  
+
+### [6] libmodbus
+
+$ tar zxvf libmodbus-3.1.4.tar.gz  
+$ ./configure --host=arm-linux-gnueabihf  --prefix=/usr/local/modbus  
+$ make  
+$ make install  
 
