@@ -112,6 +112,22 @@ static PyObject* set_slave(PyObject* self, PyObject* args)
 	return Py_BuildValue("O", Py_True);
 }
 
+static PyObject* set_timeout(PyObject* self, PyObject* args)
+{
+	unsigned int sec = 0, usec = 0;
+	
+	if(!PyArg_ParseTuple(args, "i|i", &sec, &usec))
+	{
+		PyErr_SetString(PyModbusError, "Invalid input parameter.");
+        return NULL;
+    }
+	
+	modbus_set_response_timeout(mb, sec, usec);
+	
+	Py_RETURN_TRUE;
+}
+
+
 //PyCode : pymodbus.read_registers([3, 0000, 'U16'], 2)
 static PyObject* read_registers(PyObject* self, PyObject* args)
 {
@@ -285,11 +301,12 @@ static PyObject* free_tcp(PyObject* self, PyObject *noarg)
 
 static PyMethodDef pymodbus_methods[] =
 {
-	{"new_rtu", new_rtu, METH_VARARGS, "Panasonic FP7 RTU!"},
-	{"new_tcp", new_tcp, METH_VARARGS, "Panasonic FP7 TCP!"},
+	{"new_rtu", new_rtu, METH_VARARGS, "libmodbus-3.1.4 RTU!"},
+	{"new_tcp", new_tcp, METH_VARARGS, "libmodbus-3.1.4 TCP!"},
 
+	{"set_timeout", set_timeout, METH_VARARGS, "modbus_set_response_timeout!"},
 	{"set_slave", set_slave, METH_VARARGS, "modbus_set_slave!"},
-	{"read_registers", read_registers, METH_VARARGS, "Read Registers"},
+	{"read_registers", read_registers, METH_VARARGS, "libmodbus-3.1.4 Read Registers!"},
 
 	{"free_rtu", free_rtu, METH_NOARGS, "free_rtu!"},
 	{"free_tcp", free_tcp, METH_NOARGS, "free_tcp!"},
@@ -340,8 +357,8 @@ PyInit_pymodbus(void)
         PyModule_AddObject(m, "LIBMODBUS_VERSION_STRING", ver);
 	}
 
-    PyModule_AddStringConstant(m, "__version__", "0.0.1");
-	PyModule_AddStringConstant(m, "__author__", "PSDCD"); 
+    PyModule_AddStringConstant(m, "__version__", "0.0.2");
+	PyModule_AddStringConstant(m, "__author__", "Heyn"); 
 
     return m;
 }
