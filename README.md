@@ -68,6 +68,8 @@ sysv_ipc.cpython-35m-arm-linux-gnueabihf.so
 
 $ tar zxvf libmodbus-3.1.4.tar.gz  
 $ ./configure --host=arm-linux-gnueabihf  --prefix=/usr/local/modbus  
+$ vim config.h.in  
+$ //#undef malloc  (removed this line)  
 $ make  
 $ make install  
 
