@@ -1,4 +1,11 @@
 
+//Python:   3.5.2
+//Platform: Windows/Linux/ARMv7
+//Author:   Heyn
+//Program:  Modbus for python3.5.2
+//History:  2017/03/03 V1.0.0[Heyn]
+//          2017/04/07 V1.0.1[Heyn] (modbus_connect) is faild, It's must be call (modbus_free) 
+
 #define PY_SSIZE_T_CLEAN
 
 #include <dlfcn.h>
@@ -56,6 +63,7 @@ static PyObject* new_rtu(PyObject* self, PyObject* args)
 	}
 
 	if (-1 == modbus_connect(mb)) {
+		modbus_free(mb);
 		PyErr_SetString(PyModbusError, modbus_strerror(errno));
 		return NULL;
 	}
@@ -84,6 +92,7 @@ static PyObject* new_tcp(PyObject* self, PyObject* args)
 	
 	if (-1 == modbus_connect(mb))
 	{
+		modbus_free(mb);
 		PyErr_SetString(PyModbusError, modbus_strerror(errno));
 		return NULL;
 	}
