@@ -72,4 +72,11 @@ $ vim config.h.in
 $ //#undef malloc  (removed this line)  
 $ make  
 $ make install  
-
+  
+For Windows (VS2015)  
+1.git clone git://github.com/stephane/libmodbus  (Download libmodbus src)  
+2.Double-click .\libmodbus\src\win32\configure.js  
+3.Open modbus-9.sln use IDE for vs2015.  
+4.Build release version.  
+  
+  
