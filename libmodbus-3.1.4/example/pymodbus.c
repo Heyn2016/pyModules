@@ -1,4 +1,13 @@
 
+//Python:   3.5.2
+//Platform: Windows/Linux/ARMv7
+//Author:   Heyn
+//Program:  Modbus for python3.5.2
+//History:  2017/03/03 V1.0.0[Heyn]
+//          2017/04/07 V1.0.1[Heyn] (modbus_connect) is faild, It's must be call (modbus_free) 
+//          2017/04/07 V1.0.2[Heyn] Function Code 0x01 ->  modbus_read_bits
+//									Function Code 0x02 ->  modbus_read_input_bits
+
 #define PY_SSIZE_T_CLEAN
 
 #include <dlfcn.h>
@@ -56,6 +65,7 @@ static PyObject* new_rtu(PyObject* self, PyObject* args)
 	}
 
 	if (-1 == modbus_connect(mb)) {
+		modbus_free(mb);
 		PyErr_SetString(PyModbusError, modbus_strerror(errno));
 		return NULL;
 	}
@@ -84,6 +94,7 @@ static PyObject* new_tcp(PyObject* self, PyObject* args)
 	
 	if (-1 == modbus_connect(mb))
 	{
+		modbus_free(mb);
 		PyErr_SetString(PyModbusError, modbus_strerror(errno));
 		return NULL;
 	}
@@ -111,6 +122,22 @@ static PyObject* set_slave(PyObject* self, PyObject* args)
 
 	return Py_BuildValue("O", Py_True);
 }
+
+static PyObject* set_timeout(PyObject* self, PyObject* args)
+{
+	unsigned int sec = 0, usec = 0;
+	
+	if(!PyArg_ParseTuple(args, "i|i", &sec, &usec))
+	{
+		PyErr_SetString(PyModbusError, "Invalid input parameter.");
+        return NULL;
+    }
+	
+	modbus_set_response_timeout(mb, sec, usec);
+	
+	Py_RETURN_TRUE;
+}
+
 
 //PyCode : pymodbus.read_registers([3, 0000, 'U16'], 2)
 static PyObject* read_registers(PyObject* self, PyObject* args)
@@ -172,10 +199,10 @@ static PyObject* read_registers(PyObject* self, PyObject* args)
 
 	switch (code) {
 		case 0x01:
-			regs = modbus_read_input_bits(mb, addr, nb, u08_dest);
+			regs = modbus_read_bits(mb, addr, nb, u08_dest);
 			break;
 		case 0x02:
-			regs = modbus_read_bits(mb, addr, nb, u08_dest);
+			regs = modbus_read_input_bits(mb, addr, nb, u08_dest);
 			break;		
 		case 0x03:
 			regs = modbus_read_registers(mb, addr, nb, u16_dest);
@@ -285,11 +312,12 @@ static PyObject* free_tcp(PyObject* self, PyObject *noarg)
 
 static PyMethodDef pymodbus_methods[] =
 {
-	{"new_rtu", new_rtu, METH_VARARGS, "RTU!"},
-	{"new_tcp", new_tcp, METH_VARARGS, "TCP!"},
+	{"new_rtu", new_rtu, METH_VARARGS, "libmodbus-3.1.4 RTU!"},
+	{"new_tcp", new_tcp, METH_VARARGS, "libmodbus-3.1.4 TCP!"},
 
+	{"set_timeout", set_timeout, METH_VARARGS, "modbus_set_response_timeout!"},
 	{"set_slave", set_slave, METH_VARARGS, "modbus_set_slave!"},
-	{"read_registers", read_registers, METH_VARARGS, "Read Registers"},
+	{"read_registers", read_registers, METH_VARARGS, "libmodbus-3.1.4 Read Registers!"},
 
 	{"free_rtu", free_rtu, METH_NOARGS, "free_rtu!"},
 	{"free_tcp", free_tcp, METH_NOARGS, "free_tcp!"},
@@ -340,8 +368,8 @@ PyInit_pymodbus(void)
         PyModule_AddObject(m, "LIBMODBUS_VERSION_STRING", ver);
 	}
 
-    PyModule_AddStringConstant(m, "__version__", "0.0.1");
-	PyModule_AddStringConstant(m, "__author__", "PSDCD"); 
+    PyModule_AddStringConstant(m, "__version__", "1.0.2");
+	PyModule_AddStringConstant(m, "__author__", "Heyn"); 
 
     return m;
 }

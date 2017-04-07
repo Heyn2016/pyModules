@@ -5,6 +5,8 @@
 //Program:  Modbus for python3.5.2
 //History:  2017/03/03 V1.0.0[Heyn]
 //          2017/04/07 V1.0.1[Heyn] (modbus_connect) is faild, It's must be call (modbus_free) 
+//          2017/04/07 V1.0.2[Heyn] Function Code 0x01 ->  modbus_read_bits
+//									Function Code 0x02 ->  modbus_read_input_bits
 
 #define PY_SSIZE_T_CLEAN
 
@@ -197,10 +199,10 @@ static PyObject* read_registers(PyObject* self, PyObject* args)
 
 	switch (code) {
 		case 0x01:
-			regs = modbus_read_input_bits(mb, addr, nb, u08_dest);
+			regs = modbus_read_bits(mb, addr, nb, u08_dest);
 			break;
 		case 0x02:
-			regs = modbus_read_bits(mb, addr, nb, u08_dest);
+			regs = modbus_read_input_bits(mb, addr, nb, u08_dest);
 			break;		
 		case 0x03:
 			regs = modbus_read_registers(mb, addr, nb, u16_dest);
@@ -366,7 +368,7 @@ PyInit_pymodbus(void)
         PyModule_AddObject(m, "LIBMODBUS_VERSION_STRING", ver);
 	}
 
-    PyModule_AddStringConstant(m, "__version__", "0.0.2");
+    PyModule_AddStringConstant(m, "__version__", "1.0.2");
 	PyModule_AddStringConstant(m, "__author__", "Heyn"); 
 
     return m;
