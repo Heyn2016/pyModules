@@ -4,6 +4,8 @@
 #### termcap-1.3.1 (URL:http://ftp.gnu.org/gnu/termcap/)
 #### sysv_ipc-0.7.0 (URL:http://semanchuk.com/philip/sysv_ipc/)
 #### libmodbus-3.1.4 (URL:http://libmodbus.org/download/)
+#### VPN (IPsec)
+#### openswan-2.6.49.1 (URL:https://download.openswan.org/openswan/)
 
 ## Support Toradex iMX6Q
 #### [1] Linux 3.14.52  
@@ -79,4 +81,30 @@ For Windows (VS2015)
 3.Open modbus-9.sln use IDE for vs2015.  
 4.Build release version.  
   
+### [7] openswan
+
+$ export PREFIX=/home/ToolChain/gcc-linaro  
+$ export DESTDIR=/tmp/openswan.arm  
+$ export ARCH=arm  
+$ export CC=$PREFIX/bin/arm-linux-gnueabihf-gcc  
+$ export GCC=$PREFIX/bin/arm-linux-gnueabihf-gcc  
+$ export LD=$PREFIX/bin/arm-linux-gnueabihf-ld  
+$ export RANLIB=$PREFIX/bin/arm-linux-gnueabihf-ranlib  
+$ export AR=$PREFIX/bin/arm-linux-gnueabihf-ar  
+$ export AS=$PREFIX/bin/arm-linux-gnueabihf-as  
+$ export STRIP=$PREFIX/bin/arm-linux-gnueabihf-strip  
+$ export CPATH=/home/gmp-6.1.2/gmp/include  
+$ export LD_LIBRARY_PATH = /home/gmp-6.1.2/gmp/lib:/usr/lib  
+$  
+$ make programs  
+$ make install  
+$ (and the install will go into $DESTDIR/)  
   
+
+### [7-1] Cross Compiler Release (Openswan\gmp)
+
+$ [ARM system]  
+$ tar -zxvf openswan-2.6.49.1.arm.tar.gz  
+$ tar -zxvf gmp-6.1.2.arm.tar.gz  
+  
+
