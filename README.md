@@ -6,6 +6,8 @@
 #### libmodbus-3.1.4 (URL:http://libmodbus.org/download/)
 #### VPN (IPsec)
 #### openswan-2.6.49.1 (URL:https://download.openswan.org/openswan/)
+#### strongswan-5.5.3 (URL:https://download.strongswan.org/)
+
 
 ## Support Toradex iMX6Q
 #### [1] Linux 3.14.52  
@@ -82,7 +84,7 @@ For Windows (VS2015)
 4.Build release version.  
   
 ### [7] openswan
-
+  
 $ export PREFIX=/home/ToolChain/gcc-linaro  
 $ export DESTDIR=/tmp/openswan.arm  
 $ export ARCH=arm  
@@ -100,11 +102,34 @@ $ make programs
 $ make install  
 $ (and the install will go into $DESTDIR/)  
   
-
+  
 ### [7-1] Cross Compiler Release (Openswan\gmp)
-
+  
 $ [ARM system]  
 $ tar -zxvf openswan-2.6.49.1.arm.tar.gz  
 $ tar -zxvf gmp-6.1.2.arm.tar.gz  
+  
+  
+### [8] strongswan
+  
+`Method 1 (gmp) 2017-06-27 It's bad method. Maybe gmp does not work.`  
+$ export CPATH=/home/gmp-6.1.2/gmp/include  
+$ ./configure  --host=arm-linux CC=arm-linux-gnueabihf-gcc --prefix=/usr/local/strongswan  
+  
+`Method 2 (OpenSSL)`  
+$ export CPATH=/home/gmp-6.1.2/gmp/include:/usr/local/ssl/include  
+$ ./configure  --host=arm-linux CC=arm-linux-gnueabihf-gcc LDFLAGS="-L/usr/local/ssl/lib" --prefix=/usr/local/strongswan  --enable-openssl --disable-gmp  
+  
+$ make  
+$ make install  
+$ cd /usr/local/strongswan  
+$ tar -czf strongswan.tar.gz * 
+$ [ARM system]  
+$ mkdir /usr/local/strongswan  
+$ cd /usr/local/strongswan  
+$ tar -czf strongswan.tar.gz *  
+$ cp pki /bin/
+/usr/local/strongswan/sbin$ cp ipsec swanctl /sbin/  
+   
   
 
