@@ -1,0 +1,179 @@
+# cat /var/log/strongswan
+
+Jul  5 08:41:40 00[DMN] Starting IKE charon daemon (strongSwan 5.5.3, Linux 4.1.35-dirty, armv7l)
+Jul  5 08:41:40 00[CFG] loading ca certificates from '/usr/local/strongswan/etc/ipsec.d/cacerts'
+Jul  5 08:41:40 00[CFG]   loaded ca certificate "C=US, O=VPN Server, CN=VPN Server Root CA" from '/usr/local/strongswan/etc/ipsec.d/cacerts/server-root-ca.pem'
+Jul  5 08:41:40 00[CFG] loading aa certificates from '/usr/local/strongswan/etc/ipsec.d/aacerts'
+Jul  5 08:41:40 00[CFG] loading ocsp signer certificates from '/usr/local/strongswan/etc/ipsec.d/ocspcerts'
+Jul  5 08:41:40 00[CFG] loading attribute certificates from '/usr/local/strongswan/etc/ipsec.d/acerts'
+Jul  5 08:41:40 00[CFG] loading crls from '/usr/local/strongswan/etc/ipsec.d/crls'
+Jul  5 08:41:40 00[CFG] loading secrets from '/usr/local/strongswan/etc/ipsec.secrets'
+Jul  5 08:41:40 00[LIB] building CRED_PRIVATE_KEY - RSA failed, tried 6 builders
+Jul  5 08:41:40 00[CFG]   loading private key from '/usr/local/strongswan/etc/ipsec.d/cacerts/server-root-ca.pem' failed
+Jul  5 08:41:40 00[CFG]   loaded EAP secret for heyn
+Jul  5 08:41:40 00[CFG] loaded 0 RADIUS server configurations
+Jul  5 08:41:40 00[LIB] loaded plugins: charon aes des rc2 sha2 sha1 md5 random nonce x509 revocation constraints pubkey pkcs1 pkcs7 pkcs8 pkcs12 pgp dnskey sshkey pem openssl fips-prf curve25519 xcbc cmac hmac attr kernel-netlink resolve socket-default bypass-lan stroke vici updown eap-identity eap-md5 eap-mschapv2 eap-dynamic eap-radius eap-tls eap-ttls eap-peap eap-tnc xauth-generic xauth-eap tnc-tnccs dhcp unity
+Jul  5 08:41:40 00[JOB] spawning 16 worker threads
+Jul  5 08:41:40 05[IKE] installed bypass policy for 10.163.18s9.164/30
+Jul  5 08:41:40 05[IKE] installed bypass policy for fe80::/64
+Jul  5 08:41:40 07[CFG] received stroke: add connection 'home'
+Jul  5 08:41:40 07[CFG] added configuration 'home'
+Jul  5 08:42:04 08[CFG] received stroke: initiate 'home'
+Jul  5 08:42:04 10[IKE] <home|1> initiating IKE_SA home[1] to 1.2.3.4
+Jul  5 08:42:04 10[ENC] <home|1> generating IKE_SA_INIT request 0 [ SA KE No N(NATD_S_IP) N(NATD_D_IP) N(FRAG_SUP) N(HASH_ALG) N(REDIR_SUP) ]
+Jul  5 08:42:04 10[NET] <home|1> sending packet: from 10.163.189.166[500] to 1.2.3.4[500] (378 bytes)
+Jul  5 08:42:05 11[NET] <home|1> received packet: from 1.2.3.4[500] to 10.163.189.166[500] (336 bytes)
+Jul  5 08:42:05 11[ENC] <home|1> parsed IKE_SA_INIT response 0 [ SA KE No N(NATD_S_IP) N(NATD_D_IP) N(FRAG_SUP) N(HASH_ALG) N(MULT_AUTH) ]
+Jul  5 08:42:05 11[IKE] <home|1> local host is behind NAT, sending keep alives
+Jul  5 08:42:05 11[IKE] <home|1> remote host is behind NAT
+Jul  5 08:42:05 11[IKE] <home|1> sending cert request for "C=US, O=VPN Server, CN=VPN Server Root CA"
+Jul  5 08:42:05 11[CFG] <home|1> no IDi configured, fall back on IP address
+Jul  5 08:42:05 11[IKE] <home|1> establishing CHILD_SA home
+Jul  5 08:42:05 11[ENC] <home|1> generating IKE_AUTH request 1 [ IDi CERTREQ IDr CPRQ(ADDR DNS) SA TSi TSr N(MOBIKE_SUP) N(NO_ADD_ADDR) N(MULT_AUTH) N(EAP_ONLY) N(MSG_ID_SYN_SUP) ]
+Jul  5 08:42:05 11[NET] <home|1> sending packet: from 10.163.189.166[4500] to 1.2.3.4[4500] (300 bytes)
+Jul  5 08:42:05 13[NET] <home|1> received packet: from 1.2.3.4[4500] to 10.163.189.166[4500] (544 bytes)
+Jul  5 08:42:05 13[ENC] <home|1> parsed IKE_AUTH response 1 [ EF(1/5) ]
+Jul  5 08:42:05 13[ENC] <home|1> received fragment #1 of 5, waiting for complete IKE message
+Jul  5 08:42:05 12[NET] <home|1> received packet: from 1.2.3.4[4500] to 10.163.189.166[4500] (544 bytes)
+Jul  5 08:42:05 12[ENC] <home|1> parsed IKE_AUTH response 1 [ EF(2/5) ]
+Jul  5 08:42:05 12[ENC] <home|1> received fragment #2 of 5, waiting for complete IKE message
+Jul  5 08:42:05 14[NET] <home|1> received packet: from 1.2.3.4[4500] to 10.163.189.166[4500] (544 bytes)
+Jul  5 08:42:05 14[ENC] <home|1> parsed IKE_AUTH response 1 [ EF(3/5) ]
+Jul  5 08:42:05 14[ENC] <home|1> received fragment #3 of 5, waiting for complete IKE message
+Jul  5 08:42:05 15[NET] <home|1> received packet: from 1.2.3.4[4500] to 10.163.189.166[4500] (544 bytes)
+Jul  5 08:42:05 15[ENC] <home|1> parsed IKE_AUTH response 1 [ EF(4/5) ]
+Jul  5 08:42:05 15[ENC] <home|1> received fragment #4 of 5, waiting for complete IKE message
+Jul  5 08:42:05 16[NET] <home|1> received packet: from 1.2.3.4[4500] to 10.163.189.166[4500] (80 bytes)
+Jul  5 08:42:05 16[ENC] <home|1> parsed IKE_AUTH response 1 [ EF(5/5) ]
+Jul  5 08:42:05 16[ENC] <home|1> received fragment #5 of 5, reassembling fragmented IKE message
+Jul  5 08:42:05 16[ENC] <home|1> parsed IKE_AUTH response 1 [ IDr CERT AUTH EAP/REQ/ID ]
+Jul  5 08:42:05 16[IKE] <home|1> received end entity cert "C=US, O=VPN Server, CN=1.2.3.4"
+Jul  5 08:42:05 16[CFG] <home|1>   using certificate "C=US, O=VPN Server, CN=1.2.3.4"
+Jul  5 08:42:05 16[CFG] <home|1>   using trusted ca certificate "C=US, O=VPN Server, CN=VPN Server Root CA"
+Jul  5 08:42:05 16[CFG] <home|1> checking certificate status of "C=US, O=VPN Server, CN=1.2.3.4"
+Jul  5 08:42:05 16[CFG] <home|1> certificate status is not available
+Jul  5 08:42:05 16[CFG] <home|1>   reached self-signed root ca with a path length of 0
+Jul  5 08:42:05 16[IKE] <home|1> authentication of '1.2.3.4' with RSA_EMSA_PKCS1_SHA2_384 successful
+Jul  5 08:42:05 16[IKE] <home|1> server requested EAP_IDENTITY (id 0x00), sending 'heyn'
+Jul  5 08:42:05 16[ENC] <home|1> generating IKE_AUTH request 2 [ EAP/RES/ID ]
+Jul  5 08:42:05 16[NET] <home|1> sending packet: from 10.163.189.166[4500] to 1.2.3.4[4500] (76 bytes)
+Jul  5 08:42:05 05[NET] <home|1> received packet: from 1.2.3.4[4500] to 10.163.189.166[4500] (108 bytes)
+Jul  5 08:42:05 05[ENC] <home|1> parsed IKE_AUTH response 2 [ EAP/REQ/MSCHAPV2 ]
+Jul  5 08:42:05 05[IKE] <home|1> server requested EAP_MSCHAPV2 authentication (id 0x2A)
+Jul  5 08:42:05 05[ENC] <home|1> generating IKE_AUTH request 3 [ EAP/RES/MSCHAPV2 ]
+Jul  5 08:42:05 05[NET] <home|1> sending packet: from 10.163.189.166[4500] to 1.2.3.4[4500] (140 bytes)
+Jul  5 08:42:06 06[NET] <home|1> received packet: from 1.2.3.4[4500] to 10.163.189.166[4500] (140 bytes)
+Jul  5 08:42:06 06[ENC] <home|1> parsed IKE_AUTH response 3 [ EAP/REQ/MSCHAPV2 ]
+Jul  5 08:42:06 06[IKE] <home|1> EAP-MS-CHAPv2 succeeded: 'Welcome2strongSwan'
+Jul  5 08:42:06 06[ENC] <home|1> generating IKE_AUTH request 4 [ EAP/RES/MSCHAPV2 ]
+Jul  5 08:42:06 06[NET] <home|1> sending packet: from 10.163.189.166[4500] to 1.2.3.4[4500] (76 bytes)
+Jul  5 08:42:06 07[NET] <home|1> received packet: from 1.2.3.4[4500] to 10.163.189.166[4500] (76 bytes)
+Jul  5 08:42:06 07[ENC] <home|1> parsed IKE_AUTH response 4 [ EAP/SUCC ]
+Jul  5 08:42:06 07[IKE] <home|1> EAP method EAP_MSCHAPV2 succeeded, MSK established
+Jul  5 08:42:06 07[IKE] <home|1> authentication of '10.163.189.166' (myself) with EAP
+Jul  5 08:42:06 07[ENC] <home|1> generating IKE_AUTH request 5 [ AUTH ]
+Jul  5 08:42:06 07[NET] <home|1> sending packet: from 10.163.189.166[4500] to 1.2.3.4[4500] (92 bytes)
+Jul  5 08:42:06 09[NET] <home|1> received packet: from 1.2.3.4[4500] to 10.163.189.166[4500] (236 bytes)
+Jul  5 08:42:06 09[ENC] <home|1> parsed IKE_AUTH response 5 [ AUTH CPRP(ADDR DNS DNS) SA TSi TSr N(MOBIKE_SUP) N(ADD_4_ADDR) ]
+Jul  5 08:42:06 09[IKE] <home|1> authentication of '1.2.3.4' with EAP successful
+Jul  5 08:42:06 09[IKE] <home|1> IKE_SA home[1] established between 10.163.189.166[10.163.189.166]...1.2.3.4[1.2.3.4]
+Jul  5 08:42:06 09[IKE] <home|1> scheduling reauthentication in 9825s
+Jul  5 08:42:06 09[IKE] <home|1> maximum IKE_SA lifetime 10365s
+Jul  5 08:42:06 09[IKE] <home|1> installing DNS server 8.8.8.8 to /usr/local/strongswan/etc/resolv.conf
+Jul  5 08:42:06 09[IKE] <home|1> installing DNS server 8.8.4.4 to /usr/local/strongswan/etc/resolv.conf
+Jul  5 08:42:06 09[IKE] <home|1> installing new virtual IP 10.10.10.2
+Jul  5 08:42:06 09[IKE] <home|1> CHILD_SA home{1} established with SPIs cea7724a_i c0d2a0db_o and TS 10.10.10.2/32 === 0.0.0.0/0
+Jul  5 08:42:06 09[IKE] <home|1> peer supports MOBIKE
+Jul  5 08:42:31 12[IKE] <home|1> sending keep alive to 1.2.3.4[4500]
+Jul  5 08:42:51 08[IKE] <home|1> sending keep alive to 1.2.3.4[4500]
+Jul  5 08:43:11 13[IKE] <home|1> sending keep alive to 1.2.3.4[4500]
+Jul  5 08:43:41 14[IKE] <home|1> sending keep alive to 1.2.3.4[4500]
+Jul  5 08:44:30 05[IKE] <home|1> sending keep alive to 1.2.3.4[4500]
+Jul  5 08:45:19 10[IKE] <home|1> sending keep alive to 1.2.3.4[4500]
+
+# iptables -L
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+ACCEPT     all  --  anywhere             apalis-imx6          policy match dir in pol ipsec reqid 1 proto esp
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+ACCEPT     all  --  anywhere             apalis-imx6          policy match dir in pol ipsec reqid 1 proto esp
+ACCEPT     all  --  apalis-imx6          anywhere             policy match dir out pol ipsec reqid 1 proto esp
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+ACCEPT     all  --  apalis-imx6          anywhere             policy match dir out pol ipsec reqid 1 proto esp
+
+# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.163.189.165  0.0.0.0         UG    10     0        0 usb0
+10.163.189.164  0.0.0.0         255.255.255.252 U     0      0        0 usb0
+
+# ipsec statusall
+Status of IKE charon daemon (strongSwan 5.5.3, Linux 4.1.35-dirty, armv7l):
+  uptime: 8 minutes, since Jul 05 08:41:40 2017
+  malloc: sbrk 675840, mmap 0, used 240000, free 435840
+  worker threads: 11 of 16 idle, 5/0/0/0 working, job queue: 0/0/0/0, scheduled: 3
+  loaded plugins: charon aes des rc2 sha2 sha1 md5 random nonce x509 revocation constraints pubkey pkcs1 pkcs7 pkcs8 pkcs12 pgp dnskey sshkey pem openssl fips-prf curve25519 xcbc cmac hmac attr kernel-netlink resolve socket-default bypass-lan stroke vici updown eap-identity eap-md5 eap-mschapv2 eap-dynamic eap-radius eap-tls eap-ttls eap-peap eap-tnc xauth-generic xauth-eap tnc-tnccs dhcp unity
+Listening IP addresses:
+  10.163.189.166
+Connections:
+        home:  %any...1.2.3.4  IKEv2
+        home:   local:  uses EAP_MSCHAPV2 authentication with EAP identity 'heyn'
+        home:   remote: [1.2.3.4] uses public key authentication
+        home:   child:  dynamic === 0.0.0.0/0 TUNNEL
+Shunted Connections:
+Bypass LAN 10.163.189.164/30:  10.163.189.164/30 === 10.163.189.164/30 PASS
+Bypass LAN fe80::/64:  fe80::/64 === fe80::/64 PASS
+Security Associations (1 up, 0 connecting):
+        home[1]: ESTABLISHED 8 minutes ago, 10.163.189.166[10.163.189.166]...1.2.3.4[1.2.3.4]
+        home[1]: IKEv2 SPIs: b509ae09774e4746_i* 2f9090e10a002cdf_r, EAP reauthentication in 2 hours
+        home[1]: IKE proposal: AES_CBC_256/HMAC_SHA1_96/PRF_HMAC_SHA1/MODP_1024
+        home{1}:  INSTALLED, TUNNEL, reqid 1, ESP in UDP SPIs: cea7724a_i c0d2a0db_o
+        home{1}:  AES_CBC_256/HMAC_SHA1_96, 9922 bytes_i (93 pkts, 317s ago), 40878 bytes_o (115 pkts, 155s ago), rekeying in 37 minutes
+        home{1}:   10.10.10.2/32 === 0.0.0.0/0
+
+# ip address
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default 
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: can0: <NOARP,ECHO> mtu 16 qdisc noop state DOWN group default qlen 10
+    link/can 
+3: can1: <NOARP,ECHO> mtu 16 qdisc noop state DOWN group default qlen 10
+    link/can 
+4: eth0: <BROADCAST,MULTICAST,DYNAMIC> mtu 1500 qdisc pfifo_fast state DOWN group default qlen 1000
+    link/ether 00:14:2d:4d:01:e4 brd ff:ff:ff:ff:ff:ff
+5: usb0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 02:1e:10:1f:00:00 brd ff:ff:ff:ff:ff:ff
+    inet 10.163.189.166/30 brd 10.163.189.167 scope global usb0
+       valid_lft forever preferred_lft forever
+    inet 10.10.10.2/32 scope global usb0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::1e:10ff:fe1f:0/64 scope link 
+       valid_lft forever preferred_lft forever        
+
+# ip route show table all
+default via 10.163.189.165 dev usb0 table 220 proto static src 10.10.10.2 
+10.163.189.164/30 dev usb0 table 220 proto static src 10.163.189.166 
+default via 10.163.189.165 dev usb0 metric 10 
+10.163.189.164/30 dev usb0 proto kernel scope link src 10.163.189.166 
+local 10.10.10.2 dev usb0 table local proto kernel scope host src 10.10.10.2 
+broadcast 10.163.189.164 dev usb0 table local proto kernel scope link src 10.163.189.166 
+local 10.163.189.166 dev usb0 table local proto kernel scope host src 10.163.189.166 
+broadcast 10.163.189.167 dev usb0 table local proto kernel scope link src 10.163.189.166 
+broadcast 127.0.0.0 dev lo table local proto kernel scope link src 127.0.0.1 
+local 127.0.0.0/8 dev lo table local proto kernel scope host src 127.0.0.1 
+local 127.0.0.1 dev lo table local proto kernel scope host src 127.0.0.1 
+broadcast 127.255.255.255 dev lo table local proto kernel scope link src 127.0.0.1 
+unreachable default dev lo proto kernel metric 4294967295  error -101 pref medium
+fe80::/64 dev usb0 proto kernel metric 256  pref medium
+unreachable default dev lo proto kernel metric 4294967295  error -101 pref medium
+local ::1 dev lo table local proto none metric 0  pref medium
+local fe80::1e:10ff:fe1f:0 dev lo table local proto none metric 0  pref medium
+ff00::/8 dev usb0 table local metric 256  pref medium
+unreachable default dev lo proto kernel metric 4294967295  error -101 pref medium
