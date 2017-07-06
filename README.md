@@ -138,3 +138,36 @@ $ cp pki /bin/
 See: https://wiki.strongswan.org/projects/strongswan/wiki/UserDocumentation  
 See: https://www.strongswan.org/testing/testresults/ikev1/xauth-id-psk-config/  
   
+`Client configure file.`  
+$ cat /usr/local/strongswan/etc/ipsec.conf  
+  
+config setup  
+    #charondebug="ike 1, knl 1, cfg 0"  
+    uniqueids=no  
+  
+conn home  
+    keyexchange=ikev2  
+    #fragmentation=yes  
+    #forceencaps=yes  
+    #compress=yes  
+    #type=tunnel  
+  
+    ike=aes256-sha1-modp1024,3des-sha1-modp1024!  
+    esp=aes256-sha1,3des-sha1!  
+  
+    leftsourceip=%config  
+    leftauth=eap-mschapv2  
+    leftsendcert=never  
+    leftfirewall=yes  
+  
+    right=1.2.3.4  
+    rightid=1.2.3.4  
+    rightsubnet=0.0.0.0/0  
+    rightauth=pubkey  
+  
+    rightfirewall=yes  
+  
+    eap_identity=heyn  
+    auto=add  
+    #installpolicy=yes  
+
