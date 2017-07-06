@@ -121,7 +121,7 @@ $ export CPATH=/home/gmp-6.1.2/gmp/include:/usr/local/ssl/include
 $ ./configure  --host=arm-linux CC=arm-linux-gnueabihf-gcc LDFLAGS="-L/usr/local/ssl/lib" --prefix=/usr/local/strongswan  --enable-openssl --disable-gmp  
   
   
-$ ./configure  --host=arm-linux CC=arm-linux-gnueabihf-gcc LDFLAGS="-L/usr/local/ssl/lib" --prefix=/usr/local/strongswan  --enable-eap-radius --enable-eap-mschapv2 --enable-eap-identity --enable-eap-md5 --enable-eap-mschapv2 --enable-eap-tls --enable-eap-ttls --enable-eap-peap --enable-eap-tnc --enable-eap-dynamic --enable-xauth-eap --enable-openssl --disable-gmp 
+$ ./configure  --host=arm-linux CC=arm-linux-gnueabihf-gcc LDFLAGS="-L/usr/local/ssl/lib" --prefix=/usr/local/strongswan  --enable-eap-radius --enable-eap-mschapv2 --enable-eap-identity --enable-eap-md5 --enable-eap-tls --enable-eap-ttls --enable-eap-peap --enable-eap-tnc --enable-eap-dynamic --enable-xauth-eap --enable-openssl --disable-gmp --enable-kernel-pfkey --enable-gcm  
   
 $ make  
 $ make install  
